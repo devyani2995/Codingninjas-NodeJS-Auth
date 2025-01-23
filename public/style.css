@@ -1,0 +1,146 @@
+body{
+    background: #0C1027 !important;
+}
+
+/* ====== Navbar header ====== */
+.navbar {
+    background-color: #0C1027;
+    box-shadow: 0 4px 1px 0 #1c1e2d, 0 4px 20px 0 #574576;
+}
+
+.logo-img{
+    width: 4rem;
+    height: 3.5rem;
+    border-radius: 3rem;
+    margin-top: -12px;
+}
+
+.nav-item a{
+    color: #CECFD3 !important;
+    font-size: larger;
+    font-weight: 500;
+}
+
+.nav-item a:hover{
+    color:dodgerblue !important;
+}
+
+
+/* ====== Login Page ====== */
+
+.signupContainer {
+    width: 40%;
+    background-color: #acc4e014;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 1px 0 #1c1e2d, 0 4px 20px 0 #bea4eb;
+}
+
+.signupHeading{
+    color: dodgerblue;
+    margin-top: 1rem;
+    font-family: ui-rounded;
+}
+
+.users-icon{
+    color: #FEEBFC;
+    font-size: 4.5rem;;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+}
+
+.input-div {
+    width: 83%;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid lightgray;
+}
+
+.login-input-div {
+    width: 83%;
+    margin-bottom: 1.5rem;
+    border: 1px solid lightgray;
+    border-radius: 1rem;
+}
+
+.input-icon{
+  color: #9ABBDD;
+  margin-left: 9px;
+}
+
+.input-field {
+    width: 70%;
+    background: transparent;
+    padding: 12px;
+    border: none;
+    font-size: 1rem;
+    color: whitesmoke;
+}
+
+.input-field:focus-visible{
+    outline: none;
+}
+
+.btncontainer {
+    padding: 7px;
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.btn {
+    width: 75%;
+    color: white !important;
+    background: #00000059 !important;
+    border-radius: 3rem !important;
+}
+
+.btn:hover {
+    border: 1px solid whitesmoke !important;
+    background: transparent !important;
+    border-radius: 3rem !important;
+}
+
+.span1 {
+    /* display: inline; */
+    margin-right: 6px;
+    color: grey;
+}
+
+.span-or {
+    color: grey;
+}
+
+.span2 {
+    margin-left: 6px;
+    color: grey;
+}
+
+.google-img {
+    width: 30px;
+    height: 30px;
+}
+
+.google-btn {
+    background-color: #c94439a6;
+    display: flex;
+    align-items: center;
+    width: 55%;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.glink {
+    margin: auto;
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+}

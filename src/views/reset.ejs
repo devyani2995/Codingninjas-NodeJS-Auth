@@ -1,0 +1,22 @@
+<form action="/reset" class="signupContainer" method="post">
+    <h2 class="signupHeading"><u>Reset your password</u></h2>
+    <p style="color: #f5f5f5b0;text-align: center;">Enter a new password below to change your password</p>
+
+    <div class="input-div">
+        <i class="fa-solid fa-envelope input-icon"></i>
+        <input class="input-field" type="text" name="email" placeholder='Email' value="<%= user.email %>"/>
+    </div>
+    <div class="input-div">
+        <i class="fa-solid fa-lock input-icon"></i>
+        <input class="input-field" type="password" name="old_password" placeholder='Old Password' />
+    </div>
+
+    <div class="input-div">
+        <i class="fa-solid fa-lock input-icon"></i>
+        <input class="input-field" type="password" name="new_password" placeholder='New Password' />
+    </div>
+
+    <div class="btncontainer">
+        <button class="btn" type="submit">Submit</button>
+    </div>
+</form>

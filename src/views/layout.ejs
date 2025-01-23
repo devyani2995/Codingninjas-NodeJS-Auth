@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title of the page -->
+    <title>NodeJS Authentication</title>
+    <!-- Link for Font Awesome for icons -->
+    <script
+      src="https://kit.fontawesome.com/9c250245e3.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+      integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"
+      integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- Link for Bootstrap CSS for styling and layout -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation bar -->
+    <nav
+      class="navbar navbar-expand-lg"
+      style="position: fixed; top: 0; z-index: 1; width: 100%"
+    >
+      <div class="container-fluid">
+        <!-- logo with an image -->
+        <a class="navbar-brand" href="#" style="color: #D9A1E2; font-size: xx-large; font-family: math">
+          <!-- <img class="logo-img"
+            src="data:image/png;base64,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"
+          /> -->
+          <img class="logo-img" src="https://static.vecteezy.com/system/resources/previews/020/581/022/non_2x/verified-profile-neon-glow-icon-illustration-vector.jpg">
+          NodeJS Authentication
+        </a>
+
+        <!-- Navbar links -->
+        <div>
+          <ul
+            class="navbar-nav me-auto mb-2 mb-lg-0"
+            style="display: flex; flex-direction: row"
+          >
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/"
+                style="margin-right: 16px"
+                >Home</a
+              >
+            </li>
+
+            <% if(locals.user){ %>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/reset"
+                style="margin-right: 16px"
+                >Reset</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/logout"
+                >Logout</a
+              >
+            </li>
+            <% }else{ %>
+            <!-- Login page link -->
+            <li class="nav-item" style="margin-right: 16px">
+              <a class="nav-link active" aria-current="page" href="/login"
+                >Login</a
+              >
+            </li>
+
+            <!-- Register Page link -->
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/register"
+                >Register</a
+              >
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content area -->
+    <div style="margin-top: 18vh">
+      <!-- Placeholder for rendering other ejs views dynamically -->
+      <%-body%>
+    </div>
+
+    <script>
+       <% if (flash.success && flash.success.length>0){%>
+
+          new Noty({
+           theme: 'relax',
+           text: '<%= flash.success %>',
+           type: 'success',
+           layout: 'topRight',
+           timeout: 1500
+
+          }).show();
+
+      <%}%>
+
+      <% if(flash.error && flash.error.length > 0){%>
+          new Noty({
+            theme: 'relax',
+
+            text: '<%= flash.error %>',
+            type: 'error',
+            layout: 'topRight',
+            timeout: 1900,
+         }).show();
+      <%} %>
+    </script>
+  </body>
+</html>

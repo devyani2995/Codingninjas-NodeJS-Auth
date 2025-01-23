@@ -1,0 +1,61 @@
+<form action="/register" class="signupContainer" method="post">
+  <h2 class="signupHeading"><u>SignUp for registration</u></h2>
+  <!-- <i class="fa-solid fa-users users-icon"></i> -->
+
+  <div class="input-div">
+    <i class="fa-solid fa-user input-icon"></i>
+    <input class="input-field" type="text" name="name" placeholder="Name" />
+  </div>
+
+  <div class="input-div">
+    <i class="fa-solid fa-envelope input-icon"></i>
+    <input class="input-field" type="text" name="email" placeholder="Email" />
+  </div>
+
+  <div class="input-div">
+    <i class="fa-solid fa-key input-icon"></i>
+    <input
+      class="input-field"
+      type="password"
+      name="password"
+      placeholder="Password"
+    />
+  </div>
+
+  <div class="input-div">
+    <i class="fa-solid fa-lock input-icon"></i>
+    <input
+      class="input-field"
+      type="password"
+      name="confirm_password"
+      placeholder="Confirm Password"
+    />
+  </div>
+
+  <div class="btncontainer">
+    <button class="btn" type="submit">Register</button>
+  </div>
+  <!-- <div>
+        <p>Don't have an account <a href="/register">Register</a></p>
+    </div> -->
+  <!-- <div>
+        <p> <a href="/reset">Reset Password</a></p>
+    </div> -->
+
+  <div>
+    <span class="span1">__________________</span>
+    <span class="span-or">Or</span>
+    <span class="span2">__________________</span>
+  </div>
+
+  <div class="btncontainer">
+    <div class="google-btn">
+      <img
+        class="google-img"
+        src="https://img.icons8.com/color/1x/google-logo.png"
+        alt=""
+      />
+      <a class="glink" href="/auth/google">Login with google</a>
+    </div>
+  </div>
+</form>
