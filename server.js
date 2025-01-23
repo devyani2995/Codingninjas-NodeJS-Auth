@@ -13,7 +13,7 @@ import cookieParser from 'cookie-parser';
 import flash from 'connect-flash';
 import { setflash } from './src/middleware/flash.middleware.js';
 import passport from 'passport';
-import LocalStrategy from 'passport-local';
+import LocalStrategy from './src/middleware/passport-local.middleware.js';
 import { UserModel } from './src/models/user.js';
 import { setAuthenticatedUser } from './src/middleware/auth.middleware.js';
 import bcrypt from 'bcrypt';
@@ -55,54 +55,54 @@ server.use(passport.session());
 server.use(flash());
 server.use(setflash);
 
-passport.use(new LocalStrategy({
-    usernameField: 'email',
-    passReqToCallback: true
-},
-    async function (req, email, password, done) {
-        try {
-            // find user and establish identity
-            let user = await UserModel.findOne({ email: email });
-            if (user === null) {
-                req.flash('error', 'Invalid email');
-                return done(null, false);
-            }
-            const result = await bcrypt.compare(password, user.password);
-            if (result === false) {
-                req.flash('error', 'Invalid password');
-                return done(null, false);
-            }
+// passport.use(new LocalStrategy({
+//     usernameField: 'email',
+//     passReqToCallback: true
+// },
+//     async function (req, email, password, done) {
+//         try {
+//             // find user and establish identity
+//             let user = await UserModel.findOne({ email: email });
+//             if (user === null) {
+//                 req.flash('error', 'Invalid email');
+//                 return done(null, false);
+//             }
+//             const result = await bcrypt.compare(password, user.password);
+//             if (result === false) {
+//                 req.flash('error', 'Invalid password');
+//                 return done(null, false);
+//             }
 
-            return done(null, user);
+//             return done(null, user);
 
-        } catch (error) {
-            // req.flash('error', error);
-            console.log(error, "something is wrong");
-            return done(error);
-        }
-    }));
+//         } catch (error) {
+//             // req.flash('error', error);
+//             console.log(error, "something is wrong");
+//             return done(error);
+//         }
+//     }));
 
-passport.serializeUser(function (user, done) {
-    if (user) {
-        return done(null, user.id); //it sends only id in the session
-    } else {
-        return done(null, false);
-    }
-});
+// passport.serializeUser(function (user, done) {
+//     if (user) {
+//         return done(null, user.id); //it sends only id in the session
+//     } else {
+//         return done(null, false);
+//     }
+// });
 
-passport.deserializeUser(async function (id, done) {
-    try {
+// passport.deserializeUser(async function (id, done) {
+//     try {
 
-        let user = await UserModel.findById(id);
-        if (!user) {
-            return done(null, false);
-        }
-        return done(null, user);
-    } catch (error) {
-        console.log("Error in finding user in db during desrilalize");
-        return done(error);
-    }
-});
+//         let user = await UserModel.findById(id);
+//         if (!user) {
+//             return done(null, false);
+//         }
+//         return done(null, user);
+//     } catch (error) {
+//         console.log("Error in finding user in db during desrilalize");
+//         return done(error);
+//     }
+// });
 
 server.use(setAuthenticatedUser);
 
