@@ -1,4 +1,6 @@
 import { UserModel } from "../models/user.js";
+import bcrypt from 'bcrypt';
+
 // Controller to render Login page
 export const getLogin = (req, res) => {
     return res.render('login');
@@ -16,7 +18,7 @@ export const getReset = (req, res) => {
 
 // Controller to logout from page
 export const getLogout = (req, res) => {
-    req.logout(function(error) {
+    req.logout(function (error) {
         if (error) {
             return next(error);
         }
@@ -26,8 +28,8 @@ export const getLogout = (req, res) => {
 }
 
 export const postLogin = (req, res) => {
-    console.log('req.user',req.user);
-    req.flash('success', 'User logged in successfully'); 
+    console.log('req.user', req.user);
+    req.flash('success', 'User logged in successfully');
     return res.redirect('/');
 }
 
@@ -37,23 +39,22 @@ export const postRegister = async (req, res) => {
         // check password and confirm password id match or not
 
         if (password !== confirm_password) {
-            req.flash('error', 'Password and Confirm password does not match');
+            req.flash('error', 'Password and Confirm password should not match');
             return res.redirect('/register');
         }
         // check if user is exist already in database  
         const existUser = await UserModel.findOne({ email: email });
-
-
-
         if (existUser) {
             req.flash('error', 'User is already registered');
             return res.redirect('/register')
         }
 
+        const hashedPassword = await bcrypt.hash(password, 12)
         const user = await UserModel.create({
             name: name,
             email: email,
-            password: password
+            // password: password
+            password: hashedPassword
         });
         user.save();
         req.flash('success', 'User registered successfully');
@@ -65,33 +66,32 @@ export const postRegister = async (req, res) => {
 }
 
 export const postReset = async (req, res) => {
-    const {email,old_password,new_password} = req.body;
-    
+    const { email, old_password, new_password } = req.body;
+
     const user = await UserModel.findOne({ email: email });
     if (!user) {
         req.flash('error', 'User not exist');
-        return req.redirect('/reset');
+        return res.redirect('/reset');
     }
-    // check password exist on database or not
-    if (user.password !== old_password) {
+
+    const result = await bcrypt.compare(old_password, user.password);
+    if (result === false) {
         req.flash('error', 'Current password does not match');
         return res.redirect('/reset');
     }
- 
-    if(old_password === new_password){
+
+    if (old_password === new_password) {
         req.flash('error', 'Old password and New password should not be same');
         return res.redirect('/reset');
     }
-    user.password = new_password;
+    const newHashedPassword = await bcrypt.hash(new_password, 12)
+    user.password = newHashedPassword;
     user.save();
-    req.logout(function(error) {
+    req.logout(function (error) {
         if (error) {
             return next(error);
         }
         req.flash('success', 'Password has been updated successfully!');
         res.redirect('/login');
-    })
-    // req.flash('success', 'Password has been updated successfully!');
-    // res.redirect('/login');
-
+    });
 }

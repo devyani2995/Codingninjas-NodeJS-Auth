@@ -16,6 +16,7 @@ import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import { UserModel } from './src/models/user.js';
 import { setAuthenticatedUser } from './src/middleware/auth.middleware.js';
+import bcrypt from 'bcrypt';
 
 
 dotenv.config();
@@ -34,7 +35,7 @@ server.use(session({
     secret: 'SecretKey',
     resave: false,
     saveUninitialized: true,
-    cookie: {  maxAge: (1000 * 60 * 100) }
+    cookie: { maxAge: (1000 * 60 * 100) }
 }));
 
 //Parse form data so that after submitting form data we get that data on server side
@@ -58,34 +59,38 @@ passport.use(new LocalStrategy({
     usernameField: 'email',
     passReqToCallback: true
 },
-async function(req, email, password, done) {
-    try {
-        // find user and establish identity
-        let user = await UserModel.findOne({ email: email });
+    async function (req, email, password, done) {
+        try {
+            // find user and establish identity
+            let user = await UserModel.findOne({ email: email });
+            if (user === null) {
+                req.flash('error', 'Invalid email');
+                return done(null, false);
+            }
+            const result = await bcrypt.compare(password, user.password);
+            if (result === false) {
+                req.flash('error', 'Invalid password');
+                return done(null, false);
+            }
 
-        if (!user || user.password !== password) {
-            req.flash('error', 'Invalid email/password');
-            return done(null, false);
+            return done(null, user);
+
+        } catch (error) {
+            // req.flash('error', error);
+            console.log(error, "something is wrong");
+            return done(error);
         }
+    }));
 
-        return done(null, user);
-
-    } catch (error) {
-        // req.flash('error', error);
-        console.log(error, "something is wrong");
-        return done(error);
-    }
-}));
-
-passport.serializeUser(function(user, done) {
-    if(user){
+passport.serializeUser(function (user, done) {
+    if (user) {
         return done(null, user.id); //it sends only id in the session
-    } else{
-        return done(null,false);
+    } else {
+        return done(null, false);
     }
 });
 
-passport.deserializeUser(async function(id, done) {
+passport.deserializeUser(async function (id, done) {
     try {
 
         let user = await UserModel.findById(id);
@@ -101,7 +106,7 @@ passport.deserializeUser(async function(id, done) {
 
 server.use(setAuthenticatedUser);
 
-server.use('/',router);
+server.use('/', router);
 
 //Listen port
 server.listen(process.env.PORT, () => {
