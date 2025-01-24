@@ -1,17 +1,21 @@
+<!-- Form for user registration -->
 <form action="/register" class="signupContainer" method="post">
+  <!-- Heading for the signup form -->
   <h2 class="signupHeading"><u>SignUp for registration</u></h2>
-  <!-- <i class="fa-solid fa-users users-icon"></i> -->
 
+  <!-- Input field for user name -->
   <div class="input-div">
     <i class="fa-solid fa-user input-icon"></i>
     <input class="input-field" type="text" name="name" placeholder="Name" />
   </div>
 
+  <!-- Input field for user email -->
   <div class="input-div">
     <i class="fa-solid fa-envelope input-icon"></i>
     <input class="input-field" type="text" name="email" placeholder="Email" />
   </div>
 
+  <!-- Input field for password -->
   <div class="input-div">
     <i class="fa-solid fa-key input-icon"></i>
     <input
@@ -22,6 +26,7 @@
     />
   </div>
 
+  <!-- Input field for confirming password -->
   <div class="input-div">
     <i class="fa-solid fa-lock input-icon"></i>
     <input
@@ -32,15 +37,10 @@
     />
   </div>
 
+  <!-- Submit button for the registration form -->
   <div class="btncontainer">
     <button class="btn" type="submit">Register</button>
   </div>
-  <!-- <div>
-        <p>Don't have an account <a href="/register">Register</a></p>
-    </div> -->
-  <!-- <div>
-        <p> <a href="/reset">Reset Password</a></p>
-    </div> -->
 
   <div>
     <span class="span1">__________________</span>
@@ -48,14 +48,17 @@
     <span class="span2">__________________</span>
   </div>
 
+  <!-- Google OAuth registration/login button -->
   <div class="btncontainer">
     <div class="google-btn">
+      <!-- Google logo image -->
       <img
         class="google-img"
         src="https://img.icons8.com/color/1x/google-logo.png"
         alt=""
       />
-      <a class="glink" href="/auth/google">Login with google</a>
+      <!-- Link to Google OAuth -->
+      <a class="google-link" href="/auth/google">Login/SignUp with google</a>
     </div>
   </div>
 </form>

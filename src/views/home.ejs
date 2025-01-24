@@ -1,6 +1,8 @@
 <div class="container">
   <div>
+     <!-- Check if a user object exists in the locals object -->
     <%if(locals.user){%>
+    <!-- Display a welcome message with the user's name -->
     <h3 style="color: white;text-align: center;">Welcome <%= user.name %>!</h3>
     <%} %>
   </div>

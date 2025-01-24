@@ -1,21 +1,28 @@
+<!-- Form for reset passowrd -->
 <form action="/reset" class="signupContainer" method="post">
+    <!-- Heading for the reset form -->
     <h2 class="signupHeading"><u>Reset your password</u></h2>
     <p style="color: #f5f5f5b0;text-align: center;">Enter a new password below to change your password</p>
 
+    <!-- Input field for user email -->
     <div class="input-div">
         <i class="fa-solid fa-envelope input-icon"></i>
         <input class="input-field" type="text" name="email" placeholder='Email' value="<%= user.email %>"/>
     </div>
+
+    <!-- Input field for old password -->
     <div class="input-div">
         <i class="fa-solid fa-lock input-icon"></i>
         <input class="input-field" type="password" name="old_password" placeholder='Old Password' />
     </div>
 
+    <!-- Input field for new password -->
     <div class="input-div">
         <i class="fa-solid fa-lock input-icon"></i>
         <input class="input-field" type="password" name="new_password" placeholder='New Password' />
     </div>
 
+    <!-- Submit button for the reset password form -->
     <div class="btncontainer">
         <button class="btn" type="submit">Submit</button>
     </div>
