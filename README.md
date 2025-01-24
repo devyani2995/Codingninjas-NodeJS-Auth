@@ -57,6 +57,18 @@ NodeJS-Auth is a simple authentication system built with Node.js, Express,EJS an
 
 ## Screenshots
 
+- **Login Page**
+
+![Login Page](public/images/login.png)
+
+- **Register Page**
+
+![Register Page](public/images/register.png)
+
+- **Reset Page**
+
+![Reset Page](public/images/reset.png)
+
 - **Home Page**
 
 ![Home Page](public/images/home.png)
