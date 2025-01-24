@@ -28,7 +28,7 @@ NodeJS-Auth is a simple authentication system built with Node.js, Express,EJS an
 ## Usage
 1. Start the server:
     ```sh
-    npm start
+    node server.js
     ```
 2. The server will be running on http://localhost:3000 (or specified port in .env file)
 
