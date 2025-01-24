@@ -32,7 +32,7 @@ NodeJS-Auth is a simple authentication system built with Node.js, Express,EJS an
     ```
 2. The server will be running on http://localhost:3000 (or specified port in .env file)
 
-## Endpoints
+## API Endpoints
 - `GET /` - Home page (requires authentication)
 - `GET /login` - Render login page
 - `POST /login` - Login a user
@@ -54,6 +54,12 @@ NodeJS-Auth is a simple authentication system built with Node.js, Express,EJS an
 - EJS
 - connect-flash
 - express-session
+
+## Screenshots
+
+- **Home Page**
+
+![Home Page](public/images/home.png)
 
 ## Hosted URL
 
