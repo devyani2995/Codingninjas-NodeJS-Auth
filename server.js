@@ -72,7 +72,7 @@ server.use(setflash);
 // Use custom middleware to set the authenticated user in the response locals
 server.use(setAuthenticatedUser);
 
-// // Define the routing for the application to redirect to user routes
+// Define the routing for the application to redirect to user routes
 server.use('/', router);
 
 // Start the server and listen for requests on the specified port
