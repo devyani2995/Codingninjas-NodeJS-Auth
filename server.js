@@ -21,9 +21,9 @@ import { setflash } from './src/middleware/flash.middleware.js';
 // Import passport for user authentication
 import passport from 'passport';
 // Local authentication strategy
-import LocalStrategy from './src/middleware/passport-local.middleware.js';
+import LocalStrategy from './src/config/passport-local.middleware.js';
 // Google authentication strategy
-import GoogleStrategy from './src/middleware/passport-google-auth.middleware.js';
+import GoogleStrategy from './src/config/passport-google-auth.middleware.js';
 // Custom middleware for setting authenticated user
 import { setAuthenticatedUser } from './src/middleware/auth.middleware.js';
 
